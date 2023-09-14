@@ -2,7 +2,7 @@ import joblib
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
-
+# Converting input categorical values into numerical values
 def ordinal_encoder(input_val, feats): 
     feat_val = list(1+np.arange(len(feats)))
     feat_key = feats
