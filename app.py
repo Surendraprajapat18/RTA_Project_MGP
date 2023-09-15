@@ -5,10 +5,10 @@ import joblib
 from sklearn.ensemble import RandomForestClassifier
 from prediction import get_prediction, ordinal_encoder
 
-model = joblib.load(r'Model/RandomForestClassifier_model')
+model = joblib.load(r'Model/RandomForestClassifier_Model')
 
 
-
+# adding title 
 st.set_page_config(page_title="Accident Severity Prediction App", page_icon="🚧", layout="wide")
 
 
@@ -51,45 +51,24 @@ def main():
 
         st.subheader("Enter the input for following features:")
 
-        col1, col2 = st.columns(2)
-        with col1:
-            hour = st.slider("Pickup Hour: ", 0, 23, value=0, format="%d")
-        with col2:
-            casualties = st.slider("Hour of Accident: ", 1, 8, value=0, format="%d")
-            
-       
-        col1, col2 = st.columns(2)
-        with col1:
-            accident_cause = st.selectbox("Select Accident Cause: ", options=options_cause)
-        with col2:
-            day_of_week = st.selectbox("Select Day of the Week: ", options=options_day)
 
-        col1, col2 = st.columns(2)
-        with col1:
-            vehicle_type = st.selectbox("Select Vehicle Type: ", options=options_vehicle_type)
-        with col2:
-            driver_age = st.selectbox("Select Driver Age: ", options=options_age)
+        hour = st.slider("Pickup Hour: ", 0, 23, value=0, format="%d")
+        casualties = st.slider("Hour of Accident: ", 1, 8, value=0, format="%d")
+        accident_cause = st.selectbox("Select Accident Cause: ", options=options_cause)
+        day_of_week = st.selectbox("Select Day of the Week: ", options=options_day)
+        vehicle_type = st.selectbox("Select Vehicle Type: ", options=options_vehicle_type)
+        driver_age = st.selectbox("Select Driver Age: ", options=options_age)
+        vehicles_involved = st.slider("Vehicles Involved: ", 1, 7, value=0, format="%d")        
+        accident_area = st.selectbox("Select Accident Area: ", options=options_acc_area)
+        driving_experience = st.selectbox("Select Driving Experience: ", options=options_driver_exp)
+        lanes = st.selectbox("Select Lanes: ", options=options_lanes)
+        
 
-        col1, col2 = st.columns(2)
-        with col1:
-            vehicles_involved = st.slider("Vehicles Involved: ", 1, 7, value=0, format="%d")
-        with col2:
-            accident_area = st.selectbox("Select Accident Area: ", options=options_acc_area)
-
-        col1, col2 = st.columns(2)
-        with col1:
-            driving_experience = st.selectbox("Select Driving Experience: ", options=options_driver_exp)
-        with col2:
-            lanes = st.selectbox("Select Lanes: ", options=options_lanes)
-        
-        
-        
         submit = st.form_submit_button("Predict")
 
 
     if submit:
         
-
         day_of_week = ordinal_encoder(day_of_week, options_day)
         accident_cause = ordinal_encoder(accident_cause, options_cause)
         vehicle_type = ordinal_encoder(vehicle_type, options_vehicle_type)
@@ -104,15 +83,7 @@ def main():
 
         pred = get_prediction(data=data, model=model)
 
-        if pred[0]=="Slight Injury":
-            new_title = '<p style="font-family:sans-serif; font-size: 35px;">The predicted severity is: Slight Injury</p>'
-            st.markdown(new_title, unsafe_allow_html=True)
-        elif pred[0]=="Serious Injury":
-            new_title = '<p style="font-family:sans-serif;  font-size: 35px;">The predicted severity is: Serious Injury</p>'
-            st.markdown(new_title, unsafe_allow_html=True)
-        elif pred[0]=="Fatal Injury":
-            new_title = '<p style="font-family:sans-serif;  font-size: 35px;">The predicted severity is: Fatal Injury</p>'
-            st.markdown(new_title, unsafe_allow_html=True)
+        st.write(f"{pred[0]}")
              
 
 if __name__ == '__main__':
