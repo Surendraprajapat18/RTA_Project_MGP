@@ -7,7 +7,6 @@ All the sensitive information has been excluded during data encoding and finally
 and **12316 instances** of the accident. Then it is preprocessed for identification of major causes
 of the accident by analyzing it using different machine learning classification algorithms.
 
-Source of dataset - https://dans.knaw.nl/nl/data-diensten/narcis/
 
 See the demo: 
 
