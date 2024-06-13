@@ -10,7 +10,7 @@ of the accident by analyzing it using different machine learning classification 
 
 See the demo: 
 
-Project URL:  [![Streamlit](https://img.shields.io/badge/Streamlit-%230077B5.svg?logo=streamlit&logoColor=white)](https://rta-project.onrender.com)  It is suspended due to free version.
+Project URL:  [![Streamlit](https://img.shields.io/badge/Streamlit-%230077B5.svg?logo=streamlit&logoColor=white)](https://road-accident-severity-prediction-project.onrender.com/)  
 
 # Problem Statement:
 The target feature is **Accident_severity** which is a multi-class variable. The task is to classify this
